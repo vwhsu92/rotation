@@ -1,0 +1,15 @@
+<div>
+  <h1>'Allo, 'Allo!</h1>
+  <select multiple ui-select2 ng-model="select2" data-placeholder="Select freshmen" style="width: 500px">
+    <option ng-repeat="frosh in freshmen" value="{{frosh.inum}}">{{frosh.name}}</option>
+  </select>
+  <table class="table table-striped">
+    <tr>
+        <th ng-repeat="(key, value) in freshmen[0]">{{key}}</td>
+    </tr>
+	  <tr ng-repeat="inum in select2">
+	      <td ng-repeat="(key, value) in findFreshmen(inum)">{{value}}</td>
+	  </tr>
+  </table>
+  <h3>Enjoy coding! - Yeoman</h3>
+</div>
