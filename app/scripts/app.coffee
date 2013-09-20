@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('rotationApp', ['ui.select2'])
+angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.select2'])
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
@@ -17,19 +17,19 @@ angular.module('rotationApp', ['ui.select2'])
     freshmen = [
       {
         name: "Victor Hsu"
-        inum: 1301
+        inum: 7590
         house: "Lloyd"
         ranking: 100
       },
       {
         name: "Julie Jester"
-        inum: 1303
+        inum: 7950
         house: "Page"
         ranking: 200
       },
       {
         name: "Sean Keenan"
-        inum: 1302
+        inum: 7960
         house: "Ruddock"
         ranking: 50
       }
