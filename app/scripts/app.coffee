@@ -8,7 +8,8 @@ angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.select2'])
         controller: 'MainCtrl'
       .when '/viewfreshmen',
         templateUrl: 'views/viewfreshmen.html',
-        controller: 'ViewfreshmenCtrl'
+        controller: 'ViewfreshmenCtrl',
+        reloadOnSearch: false
       .otherwise
         redirectTo: '/'
   .factory 'freshmenFactory', () ->
