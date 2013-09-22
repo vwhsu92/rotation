@@ -9,7 +9,7 @@ angular.module('rotationApp')
 
     # Returns the freshmen object for the given inum
     $scope.findFreshmen = (inum) ->
-      _.findWhere($scope.data.freshmen, {"inum": parseInt(inum)})
+      _.findWhere($scope.data.freshmen, {"inum": inum})
 
     # Handler called when the display mode changes
     $scope.changeDisplay = () ->
@@ -54,7 +54,9 @@ angular.module('rotationApp')
     Initialization
     ###
     $scope.data = {}
-    $scope.data.freshmen = freshmenFactory.getFreshmen()
+    freshmenPromise = freshmenFactory.getFreshmen()
+    freshmenPromise.then((freshmen) ->
+      $scope.data.freshmen = freshmen)
     $scope.data.displayModeValues = ['simple', 'full', 'lloyd']
 
     # Load any parameters from the route
