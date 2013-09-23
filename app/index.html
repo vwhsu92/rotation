@@ -27,7 +27,14 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view="" style="margin-left: 50px"></div>
+    <div ng-controller="HeaderCtrl">
+      <ul class="nav nav-tabs">
+          <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
+          <li ng-class="{ active: isActive('/viewfreshmen')}"><a href="#/viewfreshmen">Lookup</a></li>
+          <li ng-class="{ active: isActive('/querytable')}"><a href="#/querytable">Query</a></li>
+      </ul>
+      <div class="container" ng-view="" style="margin-left: 50px"></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -64,6 +71,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/viewfreshmen.js"></script>
         <script src="scripts/controllers/querytable.js"></script>
+        <script src="scripts/controllers/header.js"></script>
         <!-- endbuild -->
 </body>
 </html>
