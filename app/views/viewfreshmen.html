@@ -1,8 +1,8 @@
 <div>
   <h1>Lookup Freshmen</h1>
-  <div class="panel panel-primary">
+  <div class="panel panel-info">
   <!-- Default panel contents -->
-  <div class="panel-heading">View details</div>
+  <div class="panel-heading">Find freshmen by name and choose how much information you want</div>
   <div class="panel-body">
     Display Mode:
     <div class="btn-group" style="padding-left: 5px">
@@ -17,17 +17,21 @@
   <select multiple id="mySelect2" ui-select2 ng-model="data.select2" data-placeholder="Select freshmen" style="width: 100%">
     <option ng-repeat="frosh in data.freshmen" value="{{frosh.inum}}">{{frosh.name}}</option>
   </select>
-  <table class="table table-striped">
-    <col ng-show="data.showImages" span="1" style="width: 200px">
-    <tr>
-        <th ng-show="data.showImages">img</th>
-        <th ng-repeat="key in data.tableCols">{{key}}</th>
-    </tr>
-    <tr ng-repeat="inum in data.select2">
-        <td ng-show="data.showImages">
-          <img height="206" width="167" src="http://donut.caltech.edu/directory/card_image.php?inum={{inum}}&amp;photo=show">
-        </td>
-        <td ng-repeat="key in data.tableCols">{{findFreshmen(inum)[key]}}</td>
-    </tr>
-  </table>
+
+  <div style="overflow:auto; max-height:380px">
+    <table class="table table-striped">
+      <col ng-show="data.showImages" span="1" style="width: 200px">
+      <tr>
+          <th ng-show="data.showImages">img</th>
+          <th ng-repeat="key in data.tableCols">{{key}}</th>
+      </tr>
+      <tr ng-repeat="inum in data.select2">
+          <td ng-show="data.showImages">
+            <img height="206" width="167"
+                src="http://donut.caltech.edu/directory/card_image.php?inum={{inum}}&amp;photo=show">
+          </td>
+          <td ng-repeat="key in data.tableCols">{{findFreshmen(inum)[key]}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
