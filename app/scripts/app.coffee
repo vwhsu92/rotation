@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.select2'])
+angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.keypress', 'ui.select2'])
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
@@ -9,6 +9,10 @@ angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.select2'])
       .when '/viewfreshmen',
         templateUrl: 'views/viewfreshmen.html',
         controller: 'ViewfreshmenCtrl',
+        reloadOnSearch: false
+      .when '/querytable',
+        templateUrl: 'views/querytable.html',
+        controller: 'QuerytableCtrl',
         reloadOnSearch: false
       .otherwise
         redirectTo: '/'
@@ -20,12 +24,13 @@ angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.select2'])
       deferred = $q.defer()
       freshmen = []
 
-      $http.post(phpSource, { "data" : "hi"})
+      $http.post(phpSource, {})
         .success((data, status) ->
             freshmen = data;
             deferred.resolve(freshmen);
         )
         .error((data, status) ->
+            console.log "Freshmen factory failed to receive data"
             deferred.resolve(freshmen);
         )
 
