@@ -1,8 +1,8 @@
 <div>
-  <h1>Lookup Freshmen</h1>
+  <h1 class="text-info">Lookup Freshmen</h1>
   <div class="panel panel-info">
   <!-- Default panel contents -->
-  <div class="panel-heading">Find freshmen by name and choose how much information you want</div>
+  <div class="panel-heading">Find freshmen by name and choose how much information you want to see</div>
   <div class="panel-body">
     Display Mode:
     <div class="btn-group" style="padding-left: 5px">
@@ -18,14 +18,14 @@
     <option ng-repeat="frosh in data.freshmen" value="{{frosh.inum}}">{{frosh.name}}</option>
   </select>
 
-  <div style="overflow:auto; max-height:380px">
-    <table class="table table-striped">
+  <div style="overflow:auto">
+    <table class="table">
       <col ng-show="data.showImages" span="1" style="width: 200px">
       <tr>
           <th ng-show="data.showImages">img</th>
           <th ng-repeat="key in data.tableCols">{{key}}</th>
       </tr>
-      <tr ng-repeat="inum in data.select2">
+      <tr ng-repeat="inum in data.select2" ng-class="findFreshmen(inum)['picked']">
           <td ng-show="data.showImages">
             <img height="206" width="167"
                 src="http://donut.caltech.edu/directory/card_image.php?inum={{inum}}&amp;photo=show">

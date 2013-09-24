@@ -5,7 +5,6 @@ angular.module('rotationApp')
 
     phpSource = 'http://lloyd.caltech.edu/rotation/query.php'
 
-
     ###
     Functions
     ###

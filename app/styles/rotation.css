@@ -4,3 +4,28 @@ Custom CSS for Rotation web app
 .rotation-nav {
     border-radius: 0;
 }
+
+table .av {
+    background-color: #EEEEEE;
+}
+table .bl {
+    background-color: #CCCCCC;
+}
+table .da {
+    background-color: #D6E8D1;
+}
+table .fl {
+    background-color: #E8D2D1;
+}
+table .ll {
+    background-color: #FFF9E8;
+}
+table .pa {
+    background-color: #E5F9FF;
+}
+table .ri {
+    background-color: #FFEBEE;
+}
+table .ru {
+    background-color: #EBE5FF;
+}
