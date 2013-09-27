@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('rotationApp')
-  .controller 'AssignhouseCtrl', ($scope, $routeParams, $location, $http, $q, freshmenFactory) ->
+  .controller 'AssignhouseCtrl', ($scope, $routeParams, $location, $http, $q, freshmenFactory, imageLocationFactory) ->
 
     phpSource = 'http://lloyd.caltech.edu/rotation/query.php'
 
@@ -9,31 +9,31 @@ angular.module('rotationApp')
     Functions
     ###
 
-    # Returns the freshmen object for the given inum
-    $scope.findFreshmen = (inum) ->
-      _.findWhere($scope.data.freshmen, {"inum": inum})
+    # Returns the freshmen object for the given id
+    $scope.findFreshmen = (id) ->
+      _.findWhere($scope.data.freshmen, {"id": id})
 
     # Handler called when the show images checkbox is checked
     $scope.changeShowImages = () ->
       updatePath()
 
     # Handler called when the house is changed
-    $scope.changeHouse = (inum) ->
-      executeSqlUpdateStatement(inum, $scope.findFreshmen(inum)['picked'])
+    $scope.changeHouse = (id) ->
+      executeSqlUpdateStatement(id, $scope.findFreshmen(id)['picked'])
 
     # Handler to nicely close warning dialog
     $scope.clickCloseAlert = () ->
       $scope.data.alert = null
 
     # Updates frosh table with house and checks success from PHP
-    executeSqlUpdateStatement = (inum, house) ->
-      statement = "UPDATE test SET picked=\'" + house + "\' WHERE inum=" + inum + ";"
+    executeSqlUpdateStatement = (id, house) ->
+      statement = "UPDATE TODOtablename SET picked=\'" + house + "\' WHERE id=" + id + ";"
 
       $http.post(phpSource, { "key" : "ll0ydr0tation", "query" : statement})
           .success(() ->
             $scope.data.alert =
               type: 'success'
-              msg: 'Successfully updated database: ' + inum + ' assigned to ' + house
+              msg: 'Successfully updated database: ' + id + ' assigned to ' + house
           ).error((data) ->
             alert("ERROR! Database not updated: " + data)
             $scope.data.alert =
@@ -68,7 +68,9 @@ angular.module('rotationApp')
     freshmenPromise = freshmenFactory.getFreshmen()
     freshmenPromise.then((freshmen) ->
       $scope.data.freshmen = freshmen)
-    $scope.data.tableIdCols = ['inum', 'name']
+
+    $scope.data.imageFolder = imageLocationFactory.imageFolder
+    $scope.data.tableIdCols = ['id', 'FirstName', 'LastName']
     $scope.data.houses = 
       av: "avery"
       bl: "blacker"

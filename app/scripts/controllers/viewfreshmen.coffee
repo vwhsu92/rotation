@@ -1,15 +1,15 @@
 'use strict'
 
 angular.module('rotationApp')
-  .controller 'ViewfreshmenCtrl', ($scope, $routeParams, $location, freshmenFactory) ->
+  .controller 'ViewfreshmenCtrl', ($scope, $routeParams, $location, freshmenFactory, imageLocationFactory) ->
 
     ###
     Functions
     ###
 
-    # Returns the freshmen object for the given inum
-    $scope.findFreshmen = (inum) ->
-      _.findWhere($scope.data.freshmen, {"inum": inum})
+    # Returns the freshmen object for the given id
+    $scope.findFreshmen = (id) ->
+      _.findWhere($scope.data.freshmen, {"id": id})
 
     # Handler called when the display mode changes
     $scope.changeDisplay = () ->
@@ -32,10 +32,11 @@ angular.module('rotationApp')
     # Updates the displayed table columns
     setCols = () ->
       switch ($scope.data.displayMode)
-        when 'simple' then $scope.data.tableCols = ['inum', 'name']
-        when 'rounds' then $scope.data.tableCols = ['inum', 'name', 'ranking']
-        when 'full' then $scope.data.tableCols = ['inum', 'name', 'ranking', 'picked']
-        else $scope.data.tableCols = ['inum', 'name']
+        when 'simple' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'Hometown']
+        when 'rounds' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'Comments']
+        when 'rank' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'RanksTeam1', 'RanksTeam2']
+        when 'full' then $scope.data.tableCols = Object.keys($scope.data.freshmen[0])
+        else $scope.data.tableCols = ['id', 'FirstName', 'LastName']
 
     # Updates the url with the current selected freshmen and display mode
     updatePath = () =>
@@ -57,7 +58,8 @@ angular.module('rotationApp')
     freshmenPromise = freshmenFactory.getFreshmen()
     freshmenPromise.then((freshmen) ->
       $scope.data.freshmen = freshmen)
-    $scope.data.displayModeValues = ['simple', 'rounds', 'full']
+    $scope.data.displayModeValues = ['simple', 'rounds', 'rank', 'full']
+    $scope.data.imageFolder = imageLocationFactory.imageFolder
 
     # Load any parameters from the route
     $scope.data.displayMode =

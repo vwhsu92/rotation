@@ -18,7 +18,7 @@
   </div>
 
   <select multiple id="mySelect2" ui-select2 ng-model="data.select2" data-placeholder="Select freshmen" style="width: 100%">
-    <option ng-repeat="frosh in data.freshmen" value="{{frosh.inum}}">{{frosh.name}}</option>
+    <option ng-repeat="frosh in data.freshmen" value="{{frosh.id}}">{{frosh.FirstName + ' ' + frosh.LastName}}</option>
   </select>
 
   <div style="overflow:auto">
@@ -29,20 +29,19 @@
           <th ng-repeat="key in data.tableIdCols">{{key}}</th>
           <th>house</th>
       </tr>
-      <tr ng-repeat="inum in data.select2" ng-class="findFreshmen(inum)['picked']">
+      <tr ng-repeat="id in data.select2" ng-class="findFreshmen(id)['picked']">
           <td ng-show="data.showImages">
-            <img height="206" width="167"
-                src="http://donut.caltech.edu/directory/card_image.php?inum={{inum}}&amp;photo=show">
+            <img width="167" src="{{data.imageFolder + findFreshmen(id)['Photo']}}">
           </td>
-          <td ng-repeat="key in data.tableIdCols">{{findFreshmen(inum)[key]}}</td>
+          <td ng-repeat="key in data.tableIdCols">{{findFreshmen(id)[key]}}</td>
           <td style="width: 530px">
             <div class="btn-group">
               <button ng-repeat="(key, house) in data.houses" type="button" class="btn btn-danger"
-                  ng-model="findFreshmen(inum)['picked']" btn-radio="key" 
-                  ng-change="changeHouse(inum)">{{key}}</button>
+                  ng-model="findFreshmen(id)['picked']" btn-radio="key" 
+                  ng-change="changeHouse(id)">{{key}}</button>
             </div>
             <span style="padding-left: 10px; vertical-align">
-              Belongs to <strong>{{data.houses[findFreshmen(inum)['picked']]}}</strong>
+              Belongs to <strong>{{data.houses[findFreshmen(id)['picked']]}}</strong>
             </span>
           </td>
       </tr>

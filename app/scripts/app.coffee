@@ -65,3 +65,7 @@ angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.keypress', 'ui.select
 
       deferred.promise
     factory
+  .factory 'imageLocationFactory', () ->
+    factory = 
+      imageFolder: 'http://lloyd.caltech.edu/meetings/photos2013/'
+    factory

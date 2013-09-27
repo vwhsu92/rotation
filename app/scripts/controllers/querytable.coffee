@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('rotationApp')
-  .controller 'QuerytableCtrl',  ($scope, $routeParams, $location, $http, $q) ->
+  .controller 'QuerytableCtrl',  ($scope, $routeParams, $location, $http, $q, imageLocationFactory) ->
 
     phpSource = 'http://lloyd.caltech.edu/rotation/query.php'
 
@@ -9,9 +9,9 @@ angular.module('rotationApp')
     Functions
     ###
 
-    # Checks if inum is a returned table column to show picture
-    $scope.hasInum = () ->
-      _.contains($scope.data.tableCols, 'inum')
+    # Checks if photo file nmae is a returned table column to show picture
+    $scope.hasPhoto = () ->
+      _.contains($scope.data.tableCols, 'Photo')
 
     # Handler called when the show images checkbox is checked
     $scope.changeShowImages = () ->
@@ -91,6 +91,7 @@ angular.module('rotationApp')
     ###
     $scope.data = {}
 
+    $scope.data.imageFolder = imageLocationFactory.imageFolder
     $scope.data.sqlQuery = if $routeParams.sqlQuery? then decodeURIComponent($routeParams.sqlQuery) else ""
     $scope.data.runDisabled = false;
     $scope.data.showImages = false;

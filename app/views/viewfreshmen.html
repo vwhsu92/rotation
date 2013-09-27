@@ -15,7 +15,7 @@
   </div>
 
   <select multiple id="mySelect2" ui-select2 ng-model="data.select2" data-placeholder="Select freshmen" style="width: 100%">
-    <option ng-repeat="frosh in data.freshmen" value="{{frosh.inum}}">{{frosh.name}}</option>
+    <option ng-repeat="frosh in data.freshmen" value="{{frosh.id}}">{{frosh.FirstName + ' ' + frosh.LastName}}</option>
   </select>
 
   <div style="overflow:auto">
@@ -25,12 +25,11 @@
           <th ng-show="data.showImages">img</th>
           <th ng-repeat="key in data.tableCols">{{key}}</th>
       </tr>
-      <tr ng-repeat="inum in data.select2" ng-class="findFreshmen(inum)['picked']">
+      <tr ng-repeat="id in data.select2" ng-class="findFreshmen(inum)['picked']">
           <td ng-show="data.showImages">
-            <img height="206" width="167"
-                src="http://donut.caltech.edu/directory/card_image.php?inum={{inum}}&amp;photo=show">
+            <img width="167" src="{{data.imageFolder + findFreshmen(id)['Photo']}}">
           </td>
-          <td ng-repeat="key in data.tableCols">{{findFreshmen(inum)[key]}}</td>
+          <td ng-repeat="key in data.tableCols">{{findFreshmen(id)[key]}}</td>
       </tr>
     </table>
   </div>
