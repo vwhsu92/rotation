@@ -1,17 +1,19 @@
 'use strict'
 
-describe 'Controller: ViewfreshmenCtrl', () ->
+describe 'Controller: CommentfroshCtrl', () ->
 
   # load the controller's module
   beforeEach module 'rotationApp'
 
-  ViewfreshmenCtrl = {}
+  CommentfroshCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    ViewfreshmenCtrl = $controller 'ViewfreshmenCtrl', {
+    CommentfroshCtrl = $controller 'CommentfroshCtrl', {
       $scope: scope
     }
 
+  it 'should attach a list of awesomeThings to the scope', () ->
+    expect(scope.awesomeThings.length).toBe 3

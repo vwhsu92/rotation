@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('rotationApp')
-  .controller 'AssignhouseCtrl', ($scope, $routeParams, $location, $http, $q, freshmenFactory, imageLocationFactory) ->
+  .controller 'CommentfroshCtrl', ($scope, $routeParams, $location, $http, $q, freshmenFactory, imageLocationFactory) ->
 
     phpSource = 'http://lloyd.caltech.edu/rotation/query.php'
 
@@ -17,23 +17,26 @@ angular.module('rotationApp')
     $scope.changeShowImages = () ->
       updatePath()
 
-    # Handler called when the house is changed
-    $scope.changeHouse = (id) ->
-      executeSqlUpdateStatement(id, $scope.findFreshmen(id)['picked'])
+    # Handler called when the publish butotn is called
+    $scope.publishChanges = (id) ->
+      executeSqlUpdateStatement(id, $scope.findFreshmen(id)['rankComment'], $scope.findFreshmen(id)['gender'])
 
     # Handler to nicely close warning dialog
     $scope.clickCloseAlert = () ->
       $scope.data.alert = null
 
     # Updates frosh table with house and checks success from PHP
-    executeSqlUpdateStatement = (id, house) ->
-      statement = "UPDATE TODOtablename SET picked=\'" + house + "\' WHERE id=" + id + ";"
+    executeSqlUpdateStatement = (id, comment, gender) ->
+      if not comment? then comment = ""
+      if not gender? then gender = ""
+      statement = "UPDATE FROSH2013 SET rankComment=\'" + comment + "\', gender=\'" + gender + "\' WHERE id=" + id + ";"
 
       $http.post(phpSource, { "key" : "ll0ydr0tation", "query" : statement})
           .success(() ->
+            alert("Database updated!")
             $scope.data.alert =
               type: 'success'
-              msg: 'Successfully updated database: ' + id + ' assigned to ' + house
+              msg: 'Successfully updated database: ' + id + ' given comment: ' + comment
           ).error((data) ->
             alert("ERROR! Database not updated: " + data)
             $scope.data.alert =

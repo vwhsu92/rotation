@@ -6,17 +6,9 @@ angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.keypress', 'ui.select
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
-      .when '/viewfreshmen',
-        templateUrl: 'views/viewfreshmen.html',
-        controller: 'ViewfreshmenCtrl',
-        reloadOnSearch: false
-      .when '/querytable',
-        templateUrl: 'views/querytable.html',
-        controller: 'QuerytableCtrl',
-        reloadOnSearch: false
-      .when '/assignhouse',
-        templateUrl: 'views/assignhouse.html',
-        controller: 'AssignhouseCtrl',
+      .when '/commentfrosh',
+        templateUrl: 'views/commentfrosh.html',
+        controller: 'CommentfroshCtrl',
         reloadOnSearch: false
       .otherwise
         redirectTo: '/'

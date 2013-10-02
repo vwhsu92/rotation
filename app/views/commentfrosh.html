@@ -1,8 +1,8 @@
 <div>
-  <h1 class="text-danger">Assign House</h1>
-  <div class="panel panel-danger">
+  <h1 class="text-primary">Add Comments</h1>
+  <div class="panel panel-primary">
   <!-- Default panel contents -->
-  <div class="panel-heading">Assign a freshmen to a house as they get picked</div>
+  <div class="panel-heading">Add comments explaining what houses might particularly like/dislike a frosh (for Ranks Team)</div>
   <div class="panel-body">
     <input type="checkbox" ng-model="data.showImages" ng-change="changeShowImages()">
       Show images?
@@ -27,7 +27,9 @@
       <tr>
           <th ng-show="data.showImages">img</th>
           <th ng-repeat="key in data.tableIdCols">{{key}}</th>
-          <th>house</th>
+          <th>rankComment</th>
+          <th>gender</th>
+          <th>Publish</th>
       </tr>
       <tr ng-repeat="id in data.select2" ng-class="findFreshmen(id)['picked']">
           <td ng-show="data.showImages">
@@ -35,14 +37,16 @@
           </td>
           <td ng-repeat="key in data.tableIdCols">{{findFreshmen(id)[key]}}</td>
           <td style="width: 530px">
+            <textarea class="form-control" rows="4" ng-model="findFreshmen(id)['rankComment']"></textarea>
+          </td>
+          <td style="width: 150px">
             <div class="btn-group">
-              <button ng-repeat="(key, house) in data.houses" type="button" class="btn btn-danger"
-                  ng-model="findFreshmen(id)['picked']" btn-radio="key" 
-                  ng-change="changeHouse(id)">{{key}}</button>
+              <button type="button" class="btn btn-default" ng-model="findFreshmen(id)['gender']" btn-radio="'M'">M</button>
+              <button type="button" class="btn btn-default" ng-model="findFreshmen(id)['gender']" btn-radio="'F'">F</button>
             </div>
-            <span style="padding-left: 10px; vertical-align">
-              Belongs to <strong>{{data.houses[findFreshmen(id)['picked']]}}</strong>
-            </span>
+          </td>
+          <td>
+            <button class="btn btn-primary" ng-click="publishChanges(id)">Publish</button>
           </td>
       </tr>
     </table>
