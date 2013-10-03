@@ -5,27 +5,27 @@ Custom CSS for Rotation web app
     border-radius: 0;
 }
 
-table .av {
+.av {
     background-color: #EEEEEE;
 }
-table .bl {
+.bl {
     background-color: #CCCCCC;
 }
-table .da {
+.da {
     background-color: #D6E8D1;
 }
-table .fl {
+.fl {
     background-color: #E8D2D1;
 }
-table .ll {
+.ll {
     background-color: #FFF9E8;
 }
-table .pa {
+.pa {
     background-color: #E5F9FF;
 }
-table .ri {
+.ri {
     background-color: #FFEBEE;
 }
-table .ru {
+.ru {
     background-color: #EBE5FF;
 }
