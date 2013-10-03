@@ -1,0 +1,48 @@
+<div>
+  <h1 class="text-warning">Monitor Stats</h1>
+  <div class="panel panel-warning">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Monitoring relevant statistics</div>
+  <div class="panel-body">
+	  <!-- <div class="panel-heading">Overview Panel</div> -->
+
+	  <span>
+	  	Rounds to display
+	  	<span ng-repeat="round in data.rounds">
+		    <input type="checkbox" ng-model="round.visible" style="margin-left: 10px"
+		      ng-change="changeVisibleRounds()"> {{round.num}}</input>
+	    </span>
+    </span>
+  </div>
+</div>
+
+<div ng-repeat="house in data.houses" class="col-md-6">
+  <h3 class="text">{{house.name}}</h1>
+  <div class="panel {{house.abrv}}">
+	  <!-- Default panel contents -->
+	  <!-- <div class="panel-heading"></div> -->
+	  <div class="panel-body">
+	  	Frosh Remaining: {{house.froshRemaining}} <br>
+	  	Known Deals: {{house.knownDeals}}/{{house.deals}} <br>
+
+		  <div style="overflow:auto" ng-show="anyRoundVisible()">
+		    <table class="table">
+		      <tr>
+	          <th ng-repeat="key in house.round[0]">{{key}}</th>
+		      </tr>
+		      <tr ng-repeat="round in house.round">
+	          <td ng-show="data.rounds[round.num].visible" ng-repeat="key in round">{{key}}</td>
+		      </tr>
+		    </table>
+	    </div>
+
+	  	<div ng-repeat="round in house.round">
+		  	<div ng-show="data.rounds[round.num].visible">
+			  	Frosh available in Round {{round.num}}/Can Pick in Round {{round.num}}: {{round.available}} / {{round.mustPick}}
+		  	</div>
+	  	</div>
+	  	Female Percentage: {{house.females / house.picked * 100}}%
+	  </div>
+	  <!-- <div class="panel-heading">something</div> -->
+  </div>
+</div>
