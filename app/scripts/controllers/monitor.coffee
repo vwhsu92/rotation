@@ -106,7 +106,7 @@ angular.module('rotationApp')
               newLloydPicksLeftLower += 1 / round.picksPerLloyd
               if (parseInt(newLloydPicksLeftLower) > parseInt(house.lloydPicksLeftLower))
                 for otherHouse in $scope.data.houses
-                runningCount += otherHouse.round[round.num].picksPerLloyd
+                  runningCount += otherHouse.round[round.num].picksPerLloyd
 
 
 
