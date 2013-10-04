@@ -21,6 +21,7 @@ angular.module('rotationApp', ['ui.bootstrap.buttons', 'ui.keypress', 'ui.select
       .when '/monitor',
         templateUrl: 'views/monitor.html',
         controller: 'MonitorCtrl'
+        reloadOnSearch: false
       .otherwise
         redirectTo: '/'
   .factory 'freshmenFactory', ($http, $q) ->
