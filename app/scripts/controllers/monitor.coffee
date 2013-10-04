@@ -106,7 +106,7 @@ angular.module('rotationApp')
               newLloydPicksLeftLower += 1 / round.picksPerLloyd
               if (parseInt(newLloydPicksLeftLower) > parseInt(house.lloydPicksLeftLower))
                 for otherHouse in $scope.data.houses
-                runningCount += otherHouse.round[round.num].picksPerLloyd
+                  runningCount += otherHouse.round[round.num].picksPerLloyd
 
 
 
@@ -131,14 +131,14 @@ angular.module('rotationApp')
       )
 
 
-    $scope.data.houseAbrvs = [{'abrv':'av', 'froshCnt':20, 'deals':10, 'GAed':4, 'name':'Avery'},
-                              {'abrv':'bl', 'froshCnt':21, 'deals':10, 'GAed':4, 'name':'Blacker'},
-                              {'abrv':'da', 'froshCnt':22, 'deals':10, 'GAed':4, 'name':'Dabney'},
-                              {'abrv':'fl', 'froshCnt':23, 'deals':10, 'GAed':4, 'name':'Fleming'},
-                              {'abrv':'ll', 'froshCnt':24, 'deals':10, 'GAed':4, 'name':'Lloyd'},
-                              {'abrv':'pa', 'froshCnt':25, 'deals':10, 'GAed':4, 'name':'Page'},
-                              {'abrv':'ri', 'froshCnt':26, 'deals':10, 'GAed':4, 'name':'Ricketts'},
-                              {'abrv':'ru', 'froshCnt':27, 'deals':10, 'GAed':4, 'name':'Ruddock'}]
+    $scope.data.houseAbrvs = [{'abrv':'av', 'froshCnt':34, 'deals':10, 'GAed':4, 'name':'Avery'},
+                              {'abrv':'bl', 'froshCnt':27, 'deals':10, 'GAed':4, 'name':'Blacker'},
+                              {'abrv':'da', 'froshCnt':27, 'deals':10, 'GAed':4, 'name':'Dabney'},
+                              {'abrv':'fl', 'froshCnt':32, 'deals':10, 'GAed':4, 'name':'Fleming'},
+                              {'abrv':'ll', 'froshCnt':32, 'deals':10, 'GAed':4, 'name':'Lloyd'},
+                              {'abrv':'pa', 'froshCnt':32, 'deals':10, 'GAed':4, 'name':'Page'},
+                              {'abrv':'ri', 'froshCnt':28, 'deals':10, 'GAed':4, 'name':'Ricketts'},
+                              {'abrv':'ru', 'froshCnt':36, 'deals':10, 'GAed':4, 'name':'Ruddock'}]
     $scope.data.roundInfo = [0.25, 0.25, 0.15, 0.15, 0.15, 1]
     $scope.data.rounds = ({'num': num, 'visible': false} for num in [0..5])
     $scope.data.roundColumns = [['Round', 'num'], ['Available', 'available'], ['Picked', 'picked'], ['To Pick', 'mustPick'], ['Picks Per Lloyd', 'picksPerLloyd']]
