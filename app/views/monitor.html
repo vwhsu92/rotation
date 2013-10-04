@@ -10,7 +10,7 @@
 	  	Rounds to display
 	  	<span ng-repeat="round in data.rounds">
 		    <input type="checkbox" ng-model="round.visible" style="margin-left: 10px"
-		      ng-change="changeVisibleRounds()"> {{round.num}}</input>
+		      ng-change="updatePath()"> {{round.num}}</input>
 	    </span>
     </span>
   </div>
@@ -22,26 +22,22 @@
 	  <!-- Default panel contents -->
 	  <!-- <div class="panel-heading"></div> -->
 	  <div class="panel-body">
-	  	Frosh Remaining: {{house.froshRemaining}} <br>
+	  	Slots to fill: {{house.froshCnt - house.picked}} / {{house.froshCnt}} <br>
+	  	Available Pool of Frosh: {{house.froshRemainingLower}} &lt; {{house.froshRemaining}} <br>
 	  	Known Deals: {{house.knownDeals}}/{{house.deals}} <br>
-
+	  	Female Percentage: {{house.females / house.picked * 100}}% <br>
+	  	Males vs Females: {{house.females}} / {{house.picked - house.females}} <br>
+	  	Amount of picks we have before lockout: {{house.lloydPicksLeftLower}} &lt; {{house.lloydPicksLeftUpper}} <br>
 		  <div style="overflow:auto" ng-show="anyRoundVisible()">
 		    <table class="table">
 		      <tr>
-	          <th ng-repeat="key in house.round[0]">{{key}}</th>
+	          <th ng-repeat="columns in data.roundColumns">{{columns[0]}}</th>
 		      </tr>
 		      <tr ng-repeat="round in house.round">
-	          <td ng-show="data.rounds[round.num].visible" ng-repeat="key in round">{{key}}</td>
+	          <td ng-show="data.rounds[round.num].visible" ng-repeat="columns in data.roundColumns">{{round[columns[1]]}}</td>
 		      </tr>
 		    </table>
 	    </div>
-
-	  	<div ng-repeat="round in house.round">
-		  	<div ng-show="data.rounds[round.num].visible">
-			  	Frosh available in Round {{round.num}}/Can Pick in Round {{round.num}}: {{round.available}} / {{round.mustPick}}
-		  	</div>
-	  	</div>
-	  	Female Percentage: {{house.females / house.picked * 100}}%
 	  </div>
 	  <!-- <div class="panel-heading">something</div> -->
   </div>
