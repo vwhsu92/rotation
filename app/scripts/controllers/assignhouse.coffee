@@ -19,7 +19,7 @@ angular.module('rotationApp')
 
     # Handler called when the house is changed
     $scope.changeHouse = (id) ->
-      executeSqlUpdateStatement(id, $scope.findFreshmen(id)['picked'])
+      executeSqlUpdateStatement(id, $scope.findFreshmen(id)['pick'])
 
     # Handler to nicely close warning dialog
     $scope.clickCloseAlert = () ->
@@ -27,10 +27,11 @@ angular.module('rotationApp')
 
     # Updates frosh table with house and checks success from PHP
     executeSqlUpdateStatement = (id, house) ->
-      statement = "UPDATE TODOtablename SET picked=\'" + house + "\' WHERE id=" + id + ";"
+      statement = "UPDATE Frosh SET picked=\'" + house + "\' WHERE id=" + id + ";"
 
       $http.post(phpSource, { "key" : "ll0ydr0tation", "query" : statement})
           .success(() ->
+            alert("Database updated!")
             $scope.data.alert =
               type: 'success'
               msg: 'Successfully updated database: ' + id + ' assigned to ' + house
@@ -40,6 +41,23 @@ angular.module('rotationApp')
               type: 'danger'
               msg: data
           )
+
+      ###
+      statement2 = "UPDATE house_ratings SET ll=21 WHERE id=" + id + ";"
+
+      $http.post(phpSource, { "key" : "ll0ydr0tation", "query" : statement2})
+          .success(() ->
+            alert("Database updated!")
+            $scope.data.alert =
+              type: 'success'
+              msg: 'Successfully updated database: ' + id + ' has lloyd rating set to 21'
+          ).error((data) ->
+            alert("ERROR! Database not updated: " + data)
+            $scope.data.alert =
+              type: 'danger'
+              msg: data
+          )
+      ###
 
     # Handler called when freshmen selection changes. A workaround since ng-change doesnt
     # play nicely with select2. This watch method is triggered on page load, so we include

@@ -29,7 +29,7 @@
           <th ng-repeat="key in data.tableIdCols">{{key}}</th>
           <th>house</th>
       </tr>
-      <tr ng-repeat="id in data.select2" ng-class="findFreshmen(id)['picked']">
+      <tr ng-repeat="id in data.select2" ng-class="findFreshmen(id)['pick']">
           <td ng-show="data.showImages">
             <img width="167" src="{{data.imageFolder + findFreshmen(id)['Photo']}}">
           </td>
@@ -37,11 +37,11 @@
           <td style="width: 530px">
             <div class="btn-group">
               <button ng-repeat="(key, house) in data.houses" type="button" class="btn btn-danger"
-                  ng-model="findFreshmen(id)['picked']" btn-radio="key" 
+                  ng-model="findFreshmen(id)['pick']" btn-radio="key" 
                   ng-change="changeHouse(id)">{{key}}</button>
             </div>
             <span style="padding-left: 10px; vertical-align">
-              Belongs to <strong>{{data.houses[findFreshmen(id)['picked']]}}</strong>
+              Belongs to <strong>{{data.houses[findFreshmen(id)['pick']]}}</strong>
             </span>
           </td>
       </tr>

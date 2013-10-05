@@ -32,9 +32,8 @@ angular.module('rotationApp')
     # Updates the displayed table columns
     setCols = () ->
       switch ($scope.data.displayMode)
-        when 'simple' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'Hometown']
-        when 'rounds' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'Comments']
-        when 'rank' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'RanksTeam1', 'RanksTeam2']
+        when 'simple' then $scope.data.tableCols = ['id', 'FirstName', 'LastName']
+        when 'rank' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'r1', 'r2','avg','pick']
         when 'full' then $scope.data.tableCols = Object.keys($scope.data.freshmen[0])
         else $scope.data.tableCols = ['id', 'FirstName', 'LastName']
 
@@ -58,7 +57,7 @@ angular.module('rotationApp')
     freshmenPromise = freshmenFactory.getFreshmen()
     freshmenPromise.then((freshmen) ->
       $scope.data.freshmen = freshmen)
-    $scope.data.displayModeValues = ['simple', 'rounds', 'rank', 'full']
+    $scope.data.displayModeValues = ['simple', 'rank', 'full']
     $scope.data.imageFolder = imageLocationFactory.imageFolder
 
     # Load any parameters from the route
