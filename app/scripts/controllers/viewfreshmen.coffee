@@ -34,6 +34,7 @@ angular.module('rotationApp')
       switch ($scope.data.displayMode)
         when 'simple' then $scope.data.tableCols = ['id', 'FirstName', 'LastName']
         when 'rank' then $scope.data.tableCols = ['id', 'FirstName', 'LastName', 'r1', 'r2','avg','pick']
+        when 'rounds' then $scope.data.tableCols = _.filter(Object.keys($scope.data.freshmen[0]), (key) -> key not in ['rankComment','Comments'])
         when 'full' then $scope.data.tableCols = Object.keys($scope.data.freshmen[0])
         else $scope.data.tableCols = ['id', 'FirstName', 'LastName']
 
@@ -57,7 +58,7 @@ angular.module('rotationApp')
     freshmenPromise = freshmenFactory.getFreshmen()
     freshmenPromise.then((freshmen) ->
       $scope.data.freshmen = freshmen)
-    $scope.data.displayModeValues = ['simple', 'rank', 'full']
+    $scope.data.displayModeValues = ['simple', 'rank', 'rounds', 'full']
     $scope.data.imageFolder = imageLocationFactory.imageFolder
 
     # Load any parameters from the route
