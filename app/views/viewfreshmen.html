@@ -25,7 +25,7 @@
           <th ng-show="data.showImages">img</th>
           <th ng-repeat="key in data.tableCols">{{key}}</th>
       </tr>
-      <tr ng-repeat="id in data.select2" ng-class="findFreshmen(inum)['pick']">
+      <tr ng-repeat="id in data.select2" ng-class="findFreshmen(id)['pick']">
           <td ng-show="data.showImages">
             <img width="167" src="{{data.imageFolder + findFreshmen(id)['Photo']}}">
           </td>
